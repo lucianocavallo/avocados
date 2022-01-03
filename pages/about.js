@@ -1,5 +1,3 @@
-// Componente de React que trabaje como una pagina
-
 import React from "react";
 
 const About = () => {
