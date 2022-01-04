@@ -16,17 +16,17 @@ import { useRouter } from "next/router";
 // }
 
 const ProductItem = () => {
-  const { query: { productId }} = useRouter();
+  const { query: { id }} = useRouter();
   const [product, setProduct] = useState({});
 
   useEffect(() => {
-    if(productId) {
-      window.fetch(`/api/avo/${productId}`)
+    if(id) {
+      window.fetch(`/api/avo/${id}`)
       .then(res => res.json())
       .then(product => setProduct(product))
       .catch(error => console.error(error));
     }
-  }, [productId])
+  }, [id])
 
   return (
     <div>
