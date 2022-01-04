@@ -1,0 +1,11 @@
+.container {
+  background: salmon;
+}
+.my-body-class {
+  margin: 0;
+}
+html {
+  margin: 0;
+  padding: 0;
+}
+/* Agregarlo a la App */
