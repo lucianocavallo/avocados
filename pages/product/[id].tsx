@@ -32,25 +32,7 @@ const ProductItem = () => {
       }
     })
   }
-  // const handleAddToCart = (item) => {
-  //   let newItem
-  //   let cartCopy = [...cart];
-  //   if (cartCopy.some(element => item.id === element.id)) {
-  //     const index = cartCopy.findIndex(el => el.id == item.id);
-  //     console.log('type', typeof cartCopy[index].quantity)
-  //     let newQuantity = cartCopy[index].quantity + 1
-  //     newItem = {...item, quantity: newQuantity};
-  //     cartCopy = cartCopy.filter(el => el.id !== item.id)
-  //     console.log('producto ya existente');
 
-  //   } else {
-  //     console.log('nuevo producto');
-  //     newItem = {...item, quantity: 1}
-  //   }
-  //   cartCopy.push(newItem);
-  //   console.log(cartCopy);
-  //   setCart(cartCopy);
-  // }
   const handleOnChange = (e) => {
     setQuantity(e.target.value);
   }

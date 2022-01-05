@@ -1,27 +1,19 @@
-import React, { useEffect, useState, useContext } from "react";
+import React from "react";
 import ItemCard from "@components/ItemCard/ItemCard";
 import Avocado from "@components/SVGIcons/Avocado";
-import { Context } from "context/Context";
 
-const Home = () => {
-  // const [products, setProducts] = useState<TProduct[]>([]);
-  const {
-    products,
-    setProducts,
-  } = useContext(Context);
+export const getServerSideProps = async () => {
+  const response = await fetch('https://avocados-kym2fcz8i-lucianocavallo.vercel.app/api/avo');
+  const { data: products }: TAPIAvoResponse = await response.json();
 
-  useEffect(() => {
-    if (!products.length) {
-      window.fetch('/api/avo')
-      .then(response => response.json())
-      .then(({ data, length }) => {
-        setProducts(data);
-        console.log(data);
-        console.log('fetching products...')
-      })
+  return {
+    props: {
+      products
     }
-  }, [])
+  }
+}
 
+const Home = ({ products }) => {
   return (
     <main>
       <h2>Platzi
