@@ -2,7 +2,7 @@ import React from "react";
 import ItemCard from "@components/ItemCard/ItemCard";
 import Avocado from "@components/SVGIcons/Avocado";
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const response = await fetch('https://avocados-kym2fcz8i-lucianocavallo.vercel.app/api/avo');
   const { data: products }: TAPIAvoResponse = await response.json();
 
