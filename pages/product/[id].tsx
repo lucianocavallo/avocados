@@ -1,27 +1,40 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Context } from "context/Context";
+import { GetStaticProps } from "next";
+// Pagina Dinamica
 
-const ProductItem = () => {
-  const { query: { id }} = useRouter();
+export const getStaticPaths = async () => {
+  const response = await fetch('https://avocados-kym2fcz8i-lucianocavallo.vercel.app/api/avo/');
+  const { data: products }: TAPIAvoResponse = await response.json();
+
+  const paths = products.map(el => ({
+    params: { id: el.id }
+  }))
+
+  return {
+    paths,
+    fallback: false
+  }
+}
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+
+  const response = await fetch(`https://avocados-kym2fcz8i-lucianocavallo.vercel.app/api/avo/${params.id}`);
+  const product: TProduct = await response.json();
+
+  return {
+    props: {
+      product
+    }
+  }
+}
+
+const ProductItem = ({ product }: { product: TProduct }) => {
   const [inputQuantity, setQuantity] = useState(1);
 
   const {
     dispatchCart
   } = useContext(Context);
-
-  const [product, setProduct] = useState<any>({});
-
-  useEffect(() => {
-    if(id) {
-      if(!Object.keys(product).length) {
-        window.fetch(`/api/avo/${id}`)
-        .then(res => res.json())
-        .then(product => setProduct(product))
-        .catch(error => console.error(error));
-      }
-    }
-  }, [id])
 
   const handleAddToCart = (item) => {
     dispatchCart({
