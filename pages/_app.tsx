@@ -3,6 +3,11 @@ import Layout from '@components/Layout/Layout';
 import "../global.css";
 import { ContextProvider } from "../context/Context";
 
+export function reportWebVitals(metric) {
+  // analytics - calibre
+  console.log(metric);
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ContextProvider>
