@@ -1,11 +1,15 @@
 import { AppProps } from 'next/app';
 import Layout from '@components/Layout/Layout';
+import "../global.css";
+import { ContextProvider } from "../context/Context";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <ContextProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ContextProvider>
   );
 }
 
